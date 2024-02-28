@@ -2,6 +2,8 @@
 
 import { DataTable } from "../../components/DataTabel";
 import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { Button } from "@/components/ui/button";
 import React from "react";
 import PageTitle from "../../components/PageTitle";
 
@@ -34,7 +36,17 @@ const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "email",
-    header: "Email"
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "lastOrder",
